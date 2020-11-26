@@ -10,43 +10,40 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class FourServlet
+ * Servlet implementation class InfoServlet
  */
-@WebServlet("/FourServlet")
-public class FourServlet extends HttpServlet {
+@WebServlet("/InfoServlet")
+public class InfoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int num1=Integer.parseInt(request.getParameter("num1"));
-		int num2=Integer.parseInt(request.getParameter("num2"));
-		String op =request.getParameter("op"); //+ , - , *, /
-		int result= 0;
+		request.setCharacterEncoding("utf-8");
 		
-		switch(op) {
-		case "+" :
-			result = num1+num2;
-			break;
-		case "-" :
-			result = num1-num2;
-			break;
-		case "*" :
-			result = num1*num2;
-			break;
-		case "/" :
-			result = num1/num2;
-			break;
-		}
+		//받아오기
+		String name=request.getParameter("name");
+		String id=request.getParameter("id");
+		String password=request.getParameter("password");
+		String sex=request.getParameter("sex");
+		String job=request.getParameter("job");
 		
-		//사용자가 볼수있도록 내보내는 것
+		//출력하기
+		
 		response.setContentType("text/html;charset=utf-8");
-		PrintWriter out = response.getWriter();
-		out.print("<html><head><title> 사칙연산 </title></head>");
-		out.print("<body><h2>연산결과</h2><h3>");
-		out.printf("%d %s %d = %d", num1,op,num2,result);
-		out.print("</h3></body></html>");
+		PrintWriter out=response.getWriter();
+		out.print("<html><head><title> 회원가입정보 </title></head>");
+		out.print("<body> <h2> 가입정보 </h2>");
+		out.print("<ul><li> 이름:"+name+"</li>");
+		out.print("<li> 아이디:"+id+"</li>");
+		out.print("<li> 비밀번호:"+password+"</li>");
+		out.print("<li> 성별:"+sex+"</li>");
+		out.print("<li> 직업:" + job+ "</li></ul>");
+		out.print("<h2> 회원가입을 축하드립니다 </h2>");
+		out.print("</body></html>");
+		
+		
 	}
 
 	/**

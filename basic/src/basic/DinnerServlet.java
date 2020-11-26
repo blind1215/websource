@@ -10,31 +10,31 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class AddServlet
+ * Servlet implementation class DinnerServlet
  */
-@WebServlet("/Add")
-public class AddServlet extends HttpServlet {
+@WebServlet("/DinnerServlet")
+public class DinnerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//사용자가 보낸 값 가져와서 더하기 한 후 결과값 출력
-		int num1=Integer.parseInt(request.getParameter("num1"));
-		int num2=Integer.parseInt(request.getParameter("num2"));
+		request.setCharacterEncoding("utf-8");
+		//받아오기
+		String[] dinner = request.getParameterValues("dinner");
 		
-		int sum = num1 + num2;
-		
-		//보여지는 페이지에 대한 컨텐츠 타입 설정
+		//출력
 		response.setContentType("text/html;charset=utf-8");
-		
 		PrintWriter out = response.getWriter();
-		out.print("<html><head><title>덧셈프로그램</title></head>");
-		out.print("<body><h2>덧셈결과</h2>");
-		out.print("<h3> "+ num1+"+"+num2+"="+sum+"</h3>");
-		out.print("</body></html>");
-		
+		out.print("<html><head><title> 저녁메뉴 </title></head>");
+		out.print("<body><h2> 재료가있는 두가지중 하나만고르시오 </h2>");
+		out.print("<ul>");
+		for(String d:dinner) {
+			out.print("<li>"+ d +"</li>");
+			
+		}
+		out.print("</ul></body></html>");
 		
 	}
 
